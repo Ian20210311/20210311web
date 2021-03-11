@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+	<br> Please enter item to add or remove: <br> Add Item:
+	<select id="item">
+		<option>Apple
+		<option>Banana
+		<option>Cheery
+		<option>Cocount
+		<option>water
+		<option>Cock
+	</select><br><br>
+	<input type="button" id="submitAdd" value="add">
+	<input type="button" id="submitRemove" value="remove">
+	<br>
+	<div id="msg"></div>
+
+<script>
+	function start(){
+		$("#submitAdd").click(add);
+		$("#submitRemove").click(remove);
+	}
+	function add(){
+		var item=$("#item").val();
+		var btAdd=$("#submitAdd").val();
+		$.post("Ex45carts.jsp",{"item":item,"submit":btAdd},result)
+	}
+	function remove(){
+		var item=$("#item").val();
+		var btRemove=$("#submitRemove").val();
+		$.post("Ex45carts.jsp",{"item":item,"submit":btRemove},result)
+	}
+	function result(data){//(data,status)status是狀態值,目前寫的都省略,如果執行正常,會回傳200ok,如果錯會回傳如404, 500等的錯誤數字
+		$("#msg").html(data)
+	}
+	$(document).ready(start);
+</script>
+
+</body>
+</html>
